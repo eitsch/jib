@@ -23,6 +23,7 @@ If a question you have is not answered below, please [submit an issue](/../../is
 [Can I ADD a custom directory to the image?](#can-i-add-a-custom-directory-to-the-image)\
 [I need to add files generated during the build process to a custom directory on the image.](#i-need-to-add-files-generated-during-the-build-process-to-a-custom-directory-on-the-image)\
 [Can I build to a local Docker daemon?](#can-i-build-to-a-local-docker-daemon)\
+[Can I push the image to a remote private Registry?](#can-i-push-the-image-to-a-remote-private-registry)\
 [How do I enable debugging?](#how-do-i-enable-debugging)\
 [What would a Dockerfile for a Jib-built image look like?](#what-would-a-dockerfile-for-a-jib-built-image-look-like)\
 [How can I inspect the image Jib built?](#how-can-i-inspect-the-image-jib-built)\
@@ -366,6 +367,10 @@ There are several ways of doing this:
 - Use [`jib:buildTar` for Maven](../jib-maven-plugin#build-an-image-tarball) or [`jibBuildTar` for Gradle](../jib-gradle-plugin#build-an-image-tarball) to build the image to a tarball, then use `docker load --input` to load the image into Docker (the tarball built with these commands will be located in `target/jib-image.tar` for Maven and `build/jib-image.tar` for Gradle by default).
 - [`docker pull`](https://docs.docker.com/engine/reference/commandline/pull/) the image built with Jib to have it available in your local Docker daemon.
 - Alternatively, instead of using a Docker daemon, you can run a local container registry, such as [Docker registry](https://docs.docker.com/registry/deploying/) or other repository managers, and point Jib to push to the local registry.
+
+### <a name="can-i-push-the-image-to-a-remote-private-registry"></a> Can I push the image to a remote private Registry?
+From [an already resolved Issue #2179](https://github.com/GoogleContainerTools/jib/issues/2179#issuecomment-561716409):
+Say you have a local registry running at localhost:5000, my.private.registry:6000, or some.secure.server:443. Then you'd name your image like localhost:5000/some/repo/name:some-tag, my.private.registry:6000/some/name:tag, some.secure.server/repo, etc. Then mvn jib:build will push the image to the registry.
 
 ### How do I enable debugging?
 
